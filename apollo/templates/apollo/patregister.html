@@ -1,0 +1,57 @@
+{% extends 'apollo/header.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<img class = "Logo" src = "/static/apollo/JLSS.png" alt = "Apollo Hospital" align = "right" style = "width: 75px; height: 75px; border-radius: 50%;">
+
+{% if check %}
+  <br><br><br><br><br><br><br><br>
+  <h3 class = "text-white" align = "center"><span class="badge bg-danger">{{message}}</span></h3>
+
+{% else %}
+<body style="background-image: url('/static/apollo/JLSS_BG_Patregister.png'); background-size: cover; background-position: center; height: 100%;">
+<div class="container py-5">
+  <h2 class = "text-white" align = "center">Register</h2><br><br><br>
+  <form method = "POST">
+    {% csrf_token %}
+    <div class = "text-white" style = "font-family:'Helvetica'">
+    <div class = "form-row align-center">
+      <div class = "form-group col-md-3 mb-0">
+        {{ form.patient_id|as_crispy_field }}
+      </div>
+      <div class = "form-group col-md-3 mb-0">
+        {{ form.patient_name|as_crispy_field }}
+      </div>
+      <div class = "form-group col-md-1 mb-0">
+        {{ form.age|as_crispy_field }}
+      </div>
+    </div>
+    <div class = "form-row align-center">
+      <div class = "form-group col-md-3  mb-0">
+        {{ form.phone_no|as_crispy_field }}
+      </div>
+      <div class = "form-group col-md-3 mb-0">
+        {{ form.profession|as_crispy_field }}
+      </div>
+    </div>
+    <div class = "form-row align-center">
+      <div class = "form-group col-md-3 mb-0">
+        {{ form.room_type | as_crispy_field }}
+      </div>
+    </div>
+    <div class = "form-row align-center">
+      <div class = "form-group col-md-3 mb-0">
+        {{ form.password|as_crispy_field }}
+      </div>
+      <div class = "form-group col-md-3 mb-0">
+        {{ form.confirm_Password|as_crispy_field }}
+      </div>
+    </div>
+    <button class = "btn btn-primary" type = "submit">Register</button>
+  </div>
+  </form>
+  <br><br><h6 class = "text-center fw-bold" style = "color:#002557 font-family:Helvetica">Please note the auto generated Patient ID since it will be useful later.</h6>
+  <h6 class = "text-center fw-bold" style = "color:#002557 font-family:Helvetica">Already have an account? <a href = "/apollo/patlogin" style = "color:#002557"<u>Login here</u></a></h6>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'apollo/header.html' %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+<body style="background-image: url('/static/apollo/JLSS_BG_Patlogin.png'); background-size: 1550px 768px; background-position: center; height: 100%;">
+<img class = "Logo" src = "/static/apollo/JLSS.png" alt = "Apollo Hospital" align = "right" style = "width: 75px; height: 75px; border-radius: 50%;">
+<div class = "container py-5">
+  <h2 class = "text-white" align = "center">Login</h2><br><br><br<br><br><br><br>
+  <form method = "POST">
+    {% csrf_token %}
+    <div class = "form-row align-center text-white">
+      <div class = "form-group col-md-3 mb-0">
+        {{ form.patient_id|as_crispy_field }}
+      </div>
+    </div>
+    <div class = "form-row align-center text-white">
+      <div class = "form-group col-md-3 mb-0">
+        {{ form.password|as_crispy_field }}
+      </div>
+    </div><br><br>
+    <button class = "btn btn-primary" type = "submit">Login</button>
+  </form>
+  <br><br><br><br><br><br><br><br>
+  <p class = "text-center" style = "color:#002557">Don't have an account? <a href = "/apollo/patregister" style = "color:#002557"><u>Create one</u></a></p>
+</div>
+{% endblock %}

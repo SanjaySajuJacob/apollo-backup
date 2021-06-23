@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<body style="background-image: url('/static/apollo/JLSS_BG_Contactuspage.png'); background-size: 1700px 1100px; background-position: top; height: 100%;">
+<script src="//cdn.ckeditor.com/4.16.1/basic/ckeditor.js"></script>
+<!-- beginning of carousel -->
+<br><h2 align = "center" class = "text-white">Contact Us<br></h2><br><br>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-bs-interval = "10">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="d-block w-100" src="/static/apollo/Hospital1.jpg" alt="First slide" width = "300" height = "300" style = "border-radius: 5%; float: left">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="/static/apollo/Hospital2.jpg" alt="Second slide" width = "300" height = "300" style = "border-radius: 5%">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="/static/apollo/Hospital3.jpeg" alt="Third slide" width = "300" height = "300" style = "border-radius: 5%">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+              {% load crispy_forms_tags %}
+
+              {% if sent %}
+              <br><br><br><br><br><br><br><br><br><br><br><br>
+                <h3 class = "text-white" align = "center"><span class="badge bg-light text-dark">{{message}}</span></h3><br>
+
+              {% elif notsent %}
+              <h3 class = "text-white" align = "center"><span class="badge bg-danger">{{message}}</span></h3><br>
+
+              {% else %}
+              <br><br><br><br>
+              <div class = "container py-5">
+                <form method = "POST">
+                  {% csrf_token %}
+                  <div class = "text-white"  style = "font-family: 'Helvetica';">
+                    <div class = " form-row text-white" align = "left" >
+                      <div class = "form-group col-md-5 mb-0">
+                        {{ form.email_id|as_crispy_field }}
+                      </div>
+                    </div>
+                    <div class = "align-center text-white">
+                      <div class = "form-group">
+                        {{ form.content|as_crispy_field }}
+                      </div>
+                    </div>
+                 </div>
+              </div>
+                <div align = "left" style = " padding: 0px 0px 0px 200px;">
+                  <button class = "btn btn-primary" type = "submit">Send Email</button>
+                </div>
+              {%endif%}
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 fw-bold fw-bold" align = "right" style = "font-family: 'Garamond Bold'">
+        <h3>Janata Nagar,<br><br>Tardeo,<br><br>Mumbai,<br><br>Maharashtra 400034</h3><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="col-md-7 text-white" align = "right" style = "font-family: 'Garamond Bold'">
+          <h4>Feel free to contact us with any kind of queries. In the form, kindly provide your Email ID and your query. We assure you that your Email ID is completely safe and will not be used for anything else.
+            Else, you can opt to directly send us an email at <i>jayanand.jayan2020@vitstudent.ac.in</i>. We are eager to help you!</h4></div>
+      </div>
+      <div class="col-md-6" align = "right">
+
+      </div>
+    </div>
+</div>
+
+<script>
+  // Replace the <textarea id="editor1"> with a CKEditor 4
+  // instance, using default configuration.
+  CKEDITOR.replace( 'enhanced_textarea' );
+</script>

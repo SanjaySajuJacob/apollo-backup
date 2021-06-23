@@ -1,0 +1,48 @@
+{% extends "apollo/header.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if ispaid %}
+<br><br><br><br><br><br><br><br>
+  <h3 class = "text-white" align = "center"><span class="badge bg-success">{{message}}</span></h3><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+{% elif isnotpaid %}
+<br><br><br><br><br><br><br><br>
+  <h3 class = "text-white" align = "center"><span class="badge bg-success">{{pat_id}}</span></h3><br>
+  <h3 class = "text-white" align = "center"><span class="badge bg-success">{{cost}}</span></h3> <br>
+  <h3 class = "text-white" align = "center"><span class="badge bg-success">{{pay_method}}</span></h3><br>
+
+{% elif isnotverified %}
+<br><br><br><br><br><br><br><br>
+  <h3 class = "text-white" align = "center"><span class="badge bg-success">{{message}}</span></h3><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+
+{% else %}
+<body style="background-image: url('/static/apollo/JLSS_BG_Payverify.png'); background-size: 1550px 1100px; background-position: center; height: 100%;">
+  <img class = "Logo" src = "/static/apollo/JLSS.png" alt = "Apollo Hospital" align = "right" style = "width: 75px; height: 75px; border-radius: 50%;">
+
+
+  <div class="container py-5" align="left">
+    <h2 class = "text-white" align = "center">Payment</h2><br><br><br><br><br>
+    <form method = "POST">
+      {% csrf_token %}
+      <div class = "text-white" style = "font-family:'Helvetica'">
+      <div class = "form-row align-center">
+        <div class = "form-group col-md-3 mb-2">
+          {{ form.payment_id|as_crispy_field }}
+        </div>
+      </div>
+      <button class = "btn btn-primary" type = "submit">Accept Payment</button>
+    </div>
+  </form>
+  </div>
+
+{% endif %}
+<div>
+  <footer class="mt-auto text-white-50">
+  </footer>
+</div>
+
+</body>
+</html>
+{% endblock %}
